@@ -1,11 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+       img{
+            width: 200px;
+            height: 200px;
+            margin: 3px;
+            
+       }
+       .container{
+        border: solid black 1px;
+        padding: 3px;
+        position: relative;
+        height: 4000px;
+        background-color: rgb(30, 197, 177);
+       }
+
+       .container2{
+        height: 1000px;
+        background: purple;
+       }
+       #second_img{
+
+            /* border: solid black 3px;
+            position:relative;
+            top: 30px;
+            left: 100px; */
+
+         /* position: absolute;
+        top: 330px; */
+        }
+        #third_img{
+            position: sticky;
+            top: 4px;
+
+        }
+        #fourth_img{
+            position: fixed;
+        
+        }
+       
+    </style>
 </head>
+
 <body>
-    
+    <div class ="container">
+        <img id="first_img" src="360_F_524438877_PZFzwc5OWJ3MTWQVFfHKwu1DRVMaSgPx.jpg" alt="bird">
+
+        <img id="second_img" src="efe-kurnaz-RnCPiXixooY-unsplash.jpg" alt="bird">
+
+        <img id="third_img" src="pexels-eberhardgross-1366919.jpg" alt="bird">
+
+
+         <img id="fourth_img" src="360_F_524438877_PZFzwc5OWJ3MTWQVFfHKwu1DRVMaSgPx.jpg" alt="bird">
+
+
+    </div>
+    <div class="container2">
+
+    </div>
 </body>
+
 </html>
