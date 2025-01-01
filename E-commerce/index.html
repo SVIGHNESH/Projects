@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Website</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
+            color: white;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        header h1 {
+            margin: 0;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        header h1:hover {
+            transform: scale(1.1);
+        }
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        header nav a:hover {
+            color: #f39c12;
+        }
+        .hero {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), 
+                url('../project/assets/DALL·E\ 2024-12-17\ 10.41.33\ -\ A\ professional\ office\ supplies\ banner\ for\ an\ e-commerce\ website\,\ featuring\ neatly\ arranged\ items\ like\ high-quality\ pens\,\ sleek\ notebooks\,\ leather\ plan.webp') no-repeat center center/cover;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+        .hero h2 {
+            font-size: 3rem;
+            margin: 0;
+            animation: fadeIn 1s ease;
+        }
+        .hero p {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            animation: fadeIn 1.5s ease;
+        }
+        .hero button {
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .hero button:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .products {
+    padding: 50px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    background-image: url(../project/assets/DALL·E\ 2024-12-17\ 18.31.15\ -\ A\ sleek\ and\ professional\ e-commerce\ website\ background\ featuring\ a\ clean\ and\ modern\ design.\ The\ scene\ includes\ soft\ gradients\ in\ shades\ of\ white\,\ ligh.webp); /* New background color */
+    border-radius: 10px; /* Optional: Adds rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow */
+}
+
+        .product {
+            background: rgba(255, 255, 255, 0.9);
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease,
+            box-shadow 0.3s ease;
+
+            font-weight: 300
+            ;
+        }
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .product img:nth-of-type(2) {
+    height: 200px; /* Adjust the height as needed */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+        .product h3 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+        .product p {
+            font-size: 1rem;
+            color: #555;
+        }
+        .product button {
+            padding: 10px 15px;
+            font-size: 1rem;
+            color: white;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .product button:hover {
+            background-color: #218838;
+        }
+        .product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+        .cart-page {
+            padding: 50px 20px;
+            background-color: rgba(255, 255, 255, 0.95);
+            color: black;
+            border-radius: 10px;
+            max-width: 900px;
+            margin: 50px auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .cart-page h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-align: center;
+        }
+        .cart-page table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .cart-page th, .cart-page td {
+            padding: 15px;
+            text-align: center;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+        }
+        .cart-page th {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .cart-page td {
+            background-color: #fafafa;
+        }
+        .cart-page tr:hover {
+            background-color: #f1f1f1;
+        }
+        .cart-page button {
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .cart-page button:hover {
+            background-color: #0056b3;
+        }
+        .remove-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .remove-btn:hover {
+            background-color: #c82333;
+        }
+        .remove-btn:active {
+            transform: scale(0.9);
+        }
+        .cut-btn {
+            background-color: #ff5733;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .cut-btn:hover {
+            background-color: #e74c3c;
+        }
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+        footer .social-icons {
+            margin-top: 10px;
+        }
+        footer .social-icons a {
+            color: white;
+            margin: 0 10px;
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+        footer .social-icons a:hover {
+            color: #f39c12;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SHOP LUXURY</h1>
+        <nav>
+            <a href="#" onclick="showSection('hero')">Home</a>
+            <a href="#products" onclick="showSection('products')">Products</a>
+            <a href="#cart" onclick="showSection('cart')">Cart (<span id="cartCount">0</span>)</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    
+    <section id="hero" class="hero">
+        <h2>Welcome to ShopEasy</h2>
+        <p>Your one-stop shop for the best deals online</p>
+        <button>Shop Now</button>
+    </section>
+
+    <section id="products" class="products">
+        
+        <div class="product">
+            <img src="../project/assets/pen111.png" alt="Product 1" height="200">
+            <h3>Pilot V7 Black Pen</h3>
+            <p>₹599.00</p>
+            <button onclick="addToCart('Pilot V7 Black Pen', 599.00)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="../project/assets/9000016330_000.png" alt="Product 2" height="200">
+            <h3>Parker</h3>
+            <h4 style="font-family: cursive;">Silver Ball Pen</h4>
+            <p>₹553.00</p>
+            <button onclick="addToCart('Parker Silver Ball Pen', 553.00)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="../project/assets/40324885_1-paperkraft-a5-designer-wiro-hard-bound-notebook-paper-dangler-70-gsm-underwater-star.webp" alt="Product 3">
+            <h3>Paperkraft</h3>
+            <h4 style="font-family: cursive;">A5 Designer Wiro Hard Bound Notebook</h4>
+            <p>₹340.00</p>
+            <button onclick="addToCart('Product 3', 340.00)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="../project/assets/Glosen-Pen-Stand-C-2031-M.png" alt="Product 4">
+            <h3>Wooden penstand – Large</h3>
+            <p>₹1,399.00</p>
+            <button onclick="addToCart('Product 4', 1399.00)">Add to Cart</button>
+        </div>
+    </section>
+
+    <section id="cart" class="cart-page" style="display: none;">
+        <h2>Your Cart</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody id="cartItems">
+                <!-- Cart items will be dynamically inserted here -->
+            </tbody>
+        </table>
+        <div style="text-align: right; margin-top: 20px;">
+            <strong>Total: ₹<span id="cartTotal">0.00</span></strong>
+        </div>
+        <button onclick="clearCart()" class="cut-btn">Cut</button>
+        <button>Proceed to Checkout</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 ShopEasy. All Rights Reserved.</p>
+        <div class="social-icons">
+            <a href="#" title="Facebook">&#xf09a;</a>
+            <a href="#" title="Twitter">&#xf099;</a>
+            <a href="#" title="Instagram">&#xf16d;</a>
+        </div>
+    </footer>
+
+    <script>
+        const cart = {};
+        let cartItemCount = 0;
+
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = sectionId === 'cart' ? 'block' : 'grid';
+        }
+
+        function addToCart(productName, productPrice) {
+            if (cart[productName]) {
+                cart[productName].quantity++;
+                cart[productName].total = cart[productName].quantity * productPrice;
+            } else {
+                cart[productName] = {
+                    price: productPrice,
+                    quantity: 1,
+                    total: productPrice
+                };
+            }
+
+            cartItemCount++;
+            document.getElementById('cartCount').textContent = cartItemCount;
+            updateCartPage();
+            showSection('cart');
+        }
+
+        function removeFromCart(productName) {
+            cartItemCount -= cart[productName].quantity;
+            delete cart[productName];
+            document.getElementById('cartCount').textContent = cartItemCount;
+            updateCartPage();
+        }
+
+        function clearCart() {
+            for (const product in cart) {
+                delete cart[product];
+            }
+            cartItemCount = 0;
+            document.getElementById('cartCount').textContent = cartItemCount;
+            updateCartPage();
+        }
+
+        function updateCartPage() {
+            const cartItems = document.getElementById('cartItems');
+            cartItems.innerHTML = '';
+            let totalAmount = 0;
+
+            for (const [productName, productDetails] of Object.entries(cart)) {
+                totalAmount += productDetails.total;
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${productName}</td>
+                    <td>₹${productDetails.price.toFixed(2)}</td>
+                    <td>${productDetails.quantity}</td>
+                    <td>₹${productDetails.total.toFixed(2)}</td>
+                    <td><button class="remove-btn" onclick="removeFromCart('${productName}')">Remove</button></td>
+                `;
+                cartItems.appendChild(row);
+            }
+
+            document.getElementById('cartTotal').textContent = totalAmount.toFixed(2);
+        }
+    </script>
+</body>
+</html>
