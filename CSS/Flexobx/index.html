@@ -12,9 +12,9 @@
             border:5px solid brown;
             display: flex;
             flex-direction: row;
-            flex-wrap: wrap;
+            /* flex-wrap: wrap; */
             height: 500px;
-             justify-content: center;
+            /* justify-content: center; */
             align-items: center;
             align-content: center ;
 
@@ -30,6 +30,7 @@
         #box1{
                 background-color: aqua;
                 order: 1;
+                flex-shrink: 4 ;
 
         }
         #box2{
@@ -37,9 +38,11 @@
         }
         #box3{
                 background-color: orangered;
+                order:;
         }
         #box4{
                 background-color: blueviolet;
+                order: -1;
         }
         
 
