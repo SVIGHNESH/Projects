@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root{
+            /*we can also define  the variables inside the root so that we can use the variable inside every element in the CSS*/ 
+        }
+        .container{
+            background-color: beige ;
+            height: 650px;
+            border: 2px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box{
+
+            --my-color:black;/*here i am  declaraing the custom variable for the CSS*/
+             background-color: var(--my-color);
+             color: white;
+             width: 330px;
+             height: 330px;
+             border:1px solid var(--my-color);
+             border-radius: 8px;
+             margin: 5px;
+             padding: 5px;
+            
+
+
+             /* box-shadow:  20px 20px black; */
+             /* box-shadow: 10px 15px  40px red; */
+             /* box-shadow: 10px 10px 80px 20px var(--my-color); */
+             /* box-shadow:inset 10px 10px yellow; */
+            /* box-shadow:10px 15px red,15px 19px green; */
+        }
+        img{
+            height: 120px;
+        }
+        #head1{
+             text-shadow: 5px 5px 4 px red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="box">
+            <img src="logo.png" alt="logo">
+            <h2 id="head1">"BERSERK" </h2>
+            <p>Here we only deal in the bitches,devils,demons,traitors.In here you have only and only you for yourself.You have to be mentally prepared for absolutely for anything.</p>
+        </div>
+    </div>
+</body>
+</html>
