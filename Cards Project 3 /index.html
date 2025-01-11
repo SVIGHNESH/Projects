@@ -28,9 +28,37 @@
             width: 70%;
             height: 40%;
             background-image: url(abstract-digital-technology-background-isometric-600nw-2473384627.webp);
+            position: relative;
+            
         }
         .leftBox{
-            dis
+            width: 50%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: purple;
+            justify-content: space-evenly;
+            
+            /* z-index: 1; */
+        }
+        .headingBox h2{
+                align-items: center;
+                color: white;
+                padding-left: 10px;
+                padding-right: 10px;
+        }
+
+        .firstPara{
+            align-items: center;
+            color: white;
+            padding-left: 10px;
+        }
+        .statsBox{
+            display: flex;
+            justify-content: space-between;
+            padding:3px;
+            color: white;
+
         }
     </style>
 </head>
@@ -38,6 +66,31 @@
     <div class="container">
         <div class="box">
             <div class="leftBox">
+                <div class="headingBox">
+                    <h2>Get Insights that help your business grow</h2>
+                </div>
+                <div class="firstPara">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam possimus fuga non autem maiores nam, accusamus ab ex ad modi error, quo quos dolores asperiores iure iste quam! Quae, similique.</p>
+                </div>
+
+                <div class="statsBox">
+                        <div id="firstStat">
+                            <h3>10K+</h3>
+                            <p>Comments</p>
+                        </div>
+
+                        <div id="secondStat">
+                            <h3>214</h3>
+                            <p>Paid Users</p>
+                        </div>
+
+                        <div id="thirdStat">
+                            <h3>12M+</h3>
+                            <p>Views</p>
+                        </div>
+                </div>
+
+
                 
             </div>
             
