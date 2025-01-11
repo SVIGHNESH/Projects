@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Page</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+
+
+        }
+        .container{
+            width: 100vw;
+            height: 100vh;
+            /* min-height: 1200px; */
+            background-color: #8BC6EC;
+            background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .card{
+            width: 400px;
+            height: 600px;
+            background-color: white;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 35px;
+            box-shadow: 0px 0px 10px black;
+        }
+        .card img{
+            width: 100%;
+            height: 30%;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .textBox{
+            display: flex; 
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            
+            width: 70%;
+            text-align: center;
+           
+           
+        }
+
+        .amountBox{
+            width: 80%;
+            height: 10%;
+            background-color: #8BC6EC;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 10px;
+            padding-right:15px ;
+        }
+
+        .leftBox{
+                width: fit-content;
+                height: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content:space-between ;
+                gap: 15px;
+        }
+
+        .rightBox{
+
+        }
+
+        #paymentButton{
+            width: 80%;
+            height: 7%;
+            border-radius: 10px;
+            background-color: rgb(35, 35, 103);
+            color: white;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+        }
+        #cancel{
+         
+            text-decoration: none;
+            color: #515172;
+            font-weight: bold;
+            font-size: large;
+        }
+
+        .imgBox img{
+            width: 4em;
+            height: 4em;
+            border-radius: 10px;
+        }
+
+        @media (max-width:400px){
+            .amountBox{
+                flex-direction: column;
+                height: 19%;
+            }
+        }
+
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+                <img src="abstract-digital-technology-background-isometric-600nw-2473384627.webp" alt="logo">
+
+                <div class="textBox">
+                    <h2>Order Summary</h2>
+
+                    <p>Lorem ipsum dolor sit amet consec adipi lit. Sint eius nam ab tenetur cum in beatae quis non. Qui, iste?</p>
+                </div>
+                
+                <div class="amountBox">
+                    <div class="leftBox">
+                        <div class="imgBox">
+                            <img src="Music_logo.png" alt="checkout">
+                        </div>
+                        <div class="textAmountBox">
+                                <p>Amount</p>
+                                <p>$999.99</p>
+                        </div>
+                    </div>
+
+                    <div class="rightBox">
+                        <a href="#">Change</a>
+                    </div>
+                </div>
+
+                <button id="paymentButton">
+                    Proceed To Payment
+                </button>
+               
+                <a id="cancel" href="#">Cancel Order</a>
+        </div>
+
+    </div>
+</body>
+</html>
