@@ -16,12 +16,12 @@
     transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 .box:hover{
-    /* transform: rotate(3600deg); */
+    transform: rotate(3600deg);
     /* transform: scale(2); */
     /* transform: scale(0.5); */
     /* transform: rotate(-45deg); */
         /* transform: skew(50deg); */
-    transform: translate(1000px,1000px);
+    /* transform: translate(1000px,1000px); */
 
 }
 
