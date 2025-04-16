@@ -20,6 +20,9 @@
 {
     let a = 444;
     console.log(a);
+    console.log(a);
+    console.log("this is the one of the here.");
+    
 }
 // console.log(a);
 
