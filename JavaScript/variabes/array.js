@@ -17,5 +17,60 @@ person = {
   firstName : "Harish",
   lastName :'Chandra',
   age : 39,
-  experience : ['RDR2','GT]
+  experience : ['RDR2','GTA5'],
+  address :{
+    country : 'India',
+    state: 'Uttar Pradesh',
+    district : 'Lucknow'
+  }
+
 }
+
+
+const todos = [
+  {
+    id:1,
+    text :'Make the List of the TODO',
+    iscompleted :true,
+
+  },
+  {
+    id:2,
+    text :'Make the PIZZA',
+    iscompleted :true,
+    
+  },
+  {
+    id:3,
+    text :'Eat the PIZZA',
+    iscompleted :false,
+    
+  }
+];
+
+const todoJSON = JSON.stringify(todos);
+console.log(todoJSON)
+
+
+// console.log(todos)
+// console.log(todos[1].id);
+ 
+
+person.email = 'Harish@gmail.com';
+// console.log(person.email)
+// alert(person);
+// console.log(person.lastName);
+// console.log(person.address);
+// console.log(person.experience[1]);
+// console.log(person.address.country);
+// const {firstName,lastName,address :{state} } = person;
+// console.log(firstName);
+// console.log(state);
+
+
+//loops
+
+for(let i = 0 ; i<10;i++){
+  console.log(i);
+}
+
