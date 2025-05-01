@@ -49,7 +49,7 @@ const todos = [
 ];
 
 const todoJSON = JSON.stringify(todos);
-console.log(todoJSON)
+// console.log(todoJSON)
 
 
 // console.log(todos)
@@ -70,7 +70,48 @@ person.email = 'Harish@gmail.com';
 
 //loops
 
-for(let i = 0 ; i<10;i++){
-  console.log(i);
-}
+//for loops
+// for(let i = 0 ; i<=10;i++){
+//   console.log(`this is the just for trial ${i}`);
+
+// }
+// let i  = 1;
+// //while loop
+// while(i < 11 ){
+//   console.log(`While loop number:${i}`);
+//   i++;
+   
+// }
+//  for(let i = 0;i< todos.length;i++){
+//     console.log(todos[i].iscompleted);
+//  }
+
+
+// for(let i of todos){
+//   console.log(i.text); 
+// }
+
+//foreach,map,filter
+
+// todos.forEach(function(todo){
+//   console.log(todo.text);
+
+// });
+
+
+// const todotext = todos.map(function(todo){
+//   return todo.text;
+// }
+// );
+
+// console.log(todotext); 
+
+
+const todoCompleted = todos.filter(function(todo){
+  return todo.iscompleted === true;
+}).map(function(todo){
+  return todo.text;
+});
+
+console.log(todoCompleted);
 
