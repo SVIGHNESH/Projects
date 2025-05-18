@@ -8,8 +8,10 @@ const userList = document.querySelector('#users');
 myForm.addEventListener('submit',onSubmit);
 
 function onSubmit(e){
-    e.preventDefault();
+    e.preventDefault;
     console.log(nameInput);
+    
+    
 
 }
 
