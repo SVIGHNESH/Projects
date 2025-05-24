@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 Encoder & Decoder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #3f62ff 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .mode-selector {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            padding: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .mode-btn {
+            flex: 1;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .mode-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .mode-btn:hover:not(.active) {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .tool-section {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: none;
+        }
+
+        .tool-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .input-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.2);
+        }
+
+        textarea.output {
+            background: rgba(248, 249, 250, 0.9);
+            border-color: #d0d7de;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button:not(.mode-btn) {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            min-width: 120px;
+        }
+
+        button:not(.mode-btn):hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        button:not(.mode-btn):active {
+            transform: translateY(0);
+        }
+
+        .clear-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24) !important;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3) !important;
+        }
+
+        .clear-btn:hover {
+            box-shadow: 0 6px 25px rgba(255, 107, 107, 0.4) !important;
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, #26d0ce, #1a9ef0) !important;
+            box-shadow: 0 4px 15px rgba(38, 208, 206, 0.3) !important;
+        }
+
+        .copy-btn:hover {
+            box-shadow: 0 6px 25px rgba(38, 208, 206, 0.4) !important;
+        }
+
+        .info {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            border-left: 4px solid #667eea;
+            line-height: 1.6;
+        }
+
+        .success-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(76, 175, 80, 0.3);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .success-message.show {
+            transform: translateX(0);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .mode-selector {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            button:not(.mode-btn) {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Base64 Encoder & Decoder</h1>
+        
+        <div class="mode-selector">
+            <button class="mode-btn active" onclick="switchMode('encode')">
+                <span>🔼</span> Encode Text
+            </button>
+            <button class="mode-btn" onclick="switchMode('decode')">
+                <span>🔽</span> Decode Base64
+            </button>
+        </div>
+
+        <div id="encodeSection" class="tool-section active">
+            <h2 class="section-title">
+                <div class="icon">↑</div>
+                Text to Base64 Encoder
+            </h2>
+            
+            <label class="input-label">Enter your text:</label>
+            <textarea id="textInput" placeholder="Type or paste your text here..."></textarea>
+            
+            <div class="button-group">
+                <button onclick="encodeText()">🔐 Encode to Base64</button>
+                <button class="clear-btn" onclick="clearEncode()">🗑️ Clear All</button>
+            </div>
+            
+            <label class="input-label">Base64 Result:</label>
+            <textarea id="encodedOutput" class="output" placeholder="Your Base64 encoded result will appear here..." readonly></textarea>
+            
+            <div class="button-group">
+                <button class="copy-btn" onclick="copyToClipboard('encodedOutput')">📋 Copy Result</button>
+            </div>
+            
+            <div class="info">
+                <strong>💡 About Encoding:</strong> Base64 encoding converts your text into a format that's safe for transmission over the internet, embedding in URLs, or storing in databases. It's commonly used in web development, email systems, and data APIs.
+            </div>
+        </div>
+
+        <div id="decodeSection" class="tool-section">
+            <h2 class="section-title">
+                <div class="icon">↓</div>
+                Base64 to Text Decoder
+            </h2>
+            
+            <label class="input-label">Enter Base64 text:</label>
+            <textarea id="base64Input" placeholder="Paste your Base64 encoded text here..."></textarea>
+            
+            <div class="button-group">
+                <button onclick="decodeText()">🔓 Decode from Base64</button>
+                <button class="clear-btn" onclick="clearDecode()">🗑️ Clear All</button>
+            </div>
+            
+            <label class="input-label">Decoded Result:</label>
+            <textarea id="decodedOutput" class="output" placeholder="Your decoded text will appear here..." readonly></textarea>
+            
+            <div class="button-group">
+                <button class="copy-btn" onclick="copyToClipboard('decodedOutput')">📋 Copy Result</button>
+            </div>
+            
+            <div class="info">
+                <strong>💡 About Decoding:</strong> Base64 decoding converts encoded text back to its original readable format. Make sure your input is valid Base64 - it should only contain letters (A-Z, a-z), numbers (0-9), plus (+), slash (/), and equals (=) for padding.
+            </div>
+        </div>
+    </div>
+
+    <div id="successMessage" class="success-message">
+        ✅ Copied to clipboard!
+    </div>
+
+    <script>
+        let currentMode = 'encode';
+
+        function switchMode(mode) {
+            currentMode = mode;
+            
+            // Update button states
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.closest('.mode-btn').classList.add('active');
+            
+            // Update section visibility
+            document.querySelectorAll('.tool-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            if (mode === 'encode') {
+                document.getElementById('encodeSection').classList.add('active');
+            } else {
+                document.getElementById('decodeSection').classList.add('active');
+            }
+        }
+
+        function encodeText() {
+            const textInput = document.getElementById('textInput');
+            const encodedOutput = document.getElementById('encodedOutput');
+            
+            if (!textInput.value.trim()) {
+                alert('⚠️ Please enter some text to encode.');
+                textInput.focus();
+                return;
+            }
+            
+            try {
+                const encoded = btoa(unescape(encodeURIComponent(textInput.value)));
+                encodedOutput.value = encoded;
+                encodedOutput.style.height = 'auto';
+                encodedOutput.style.height = Math.max(150, encodedOutput.scrollHeight) + 'px';
+            } catch (error) {
+                alert('❌ Error encoding text: ' + error.message);
+            }
+        }
+
+        function decodeText() {
+            const base64Input = document.getElementById('base64Input');
+            const decodedOutput = document.getElementById('decodedOutput');
+            
+            if (!base64Input.value.trim()) {
+                alert('⚠️ Please enter Base64 text to decode.');
+                base64Input.focus();
+                return;
+            }
+            
+            try {
+                const decoded = decodeURIComponent(escape(atob(base64Input.value.trim())));
+                decodedOutput.value = decoded;
+                decodedOutput.style.height = 'auto';
+                decodedOutput.style.height = Math.max(150, decodedOutput.scrollHeight) + 'px';
+            } catch (error) {
+                alert('❌ Error decoding Base64: Invalid Base64 input. Please check your input and try again.');
+                decodedOutput.value = '';
+            }
+        }
+
+        function clearEncode() {
+            document.getElementById('textInput').value = '';
+            document.getElementById('encodedOutput').value = '';
+            document.getElementById('textInput').focus();
+        }
+
+        function clearDecode() {
+            document.getElementById('base64Input').value = '';
+            document.getElementById('decodedOutput').value = '';
+            document.getElementById('base64Input').focus();
+        }
+
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            
+            if (!element.value.trim()) {
+                alert('⚠️ Nothing to copy! Please process some text first.');
+                return;
+            }
+            
+            element.select();
+            element.setSelectionRange(0, 99999);
+            
+            try {
+                document.execCommand('copy');
+                showSuccessMessage();
+                element.blur();
+            } catch (error) {
+                // Fallback for modern browsers
+                navigator.clipboard.writeText(element.value).then(() => {
+                    showSuccessMessage();
+                }).catch(() => {
+                    alert('❌ Failed to copy to clipboard. Please copy manually.');
+                });
+            }
+        }
+
+        function showSuccessMessage() {
+            const message = document.getElementById('successMessage');
+            message.classList.add('show');
+            
+            setTimeout(() => {
+                message.classList.remove('show');
+            }, 2500);
+        }
+
+        // Auto-resize textareas
+        document.querySelectorAll('textarea').forEach(textarea => {
+            textarea.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = Math.max(150, this.scrollHeight) + 'px';
+            });
+        });
+
+        // Keyboard shortcuts
+        document.getElementById('textInput').addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                encodeText();
+            }
+        });
+
+        document.getElementById('base64Input').addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                decodeText();
+            }
+        });
+
+        // Focus on input when switching modes
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('textInput').focus();
+        });
+    </script>
+</body>
+</html>
