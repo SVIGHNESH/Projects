@@ -9,14 +9,14 @@
 // import PropTypes from 'prop-types';
 
 
-function Student(names){
+function Student(qwerty){
 
 
         return(
             <div className="Students">
-                    <p>Name: {name.name}</p>
-                    <p>Age : {name.age}</p>
-                    <p>isStudent : {name.isStudent ? "Yes" : "No"}</p>
+                    <p>Name: {qwerty.name}</p>
+                    <p>Age : {qwerty.age}</p>
+                    <p>isStudent : {qwerty.isStudent ? "Yes" : "No"}</p>
             </div>
         );
 }
